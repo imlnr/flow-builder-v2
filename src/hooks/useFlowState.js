@@ -6,8 +6,8 @@ import { getLayoutedElements } from '../utils/layoutUtils';
 export const useFlowState = (initialNodes = [], initialEdges = []) => {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-    const [selectedNodeId, setSelectedNodeId] = useState(null);
-    const [nodeHistory, setNodeHistory] = useState([]); // Track node creation order
+    const [selectedNodeId, setSelectedNodeId] = useState(initialNodes.length > 0 ? initialNodes[0].id : null);
+    const [nodeHistory, setNodeHistory] = useState(initialNodes.map(node => node.id)); // Track node creation order
     const { fitView } = useReactFlow();
 
     const onConnect = useCallback(
